@@ -1,0 +1,41 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 15%;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  transition: box-shadow 0.3s ease-in-out;
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__img {
+    height: 70%;
+  }
+  &__brand {
+    font-size: 1em;
+    font-weight: 600;
+  }
+  &__title {
+    font-size: 0.9em;
+    font-weight: 500;
+  }
+  &__price {
+    font-size: 1em;
+    font-weight: 600;
+  }
+
+  &__form {
+    background-color: red;
+  }
+}

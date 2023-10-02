@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage/HomePage";
+import ProductPage from "./pages/ProductPage/ProductPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import { Header } from "./components/Header/Header";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { collection } from "firebase/firestore";
+import { db } from "./config/firestore";
+import ChildrenList from "./components/ChildrenList";
+import AddNew from "./components/AddNew";
+import CartPage from "./pages/CartPage/CartPage";
+import ItemsContextProvider from "./context/ItemsContextProvider";
+import CartContextProvider from "./context/CartContextProvider";
+import CartProvider from "./context/CartProvider";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  // const collectionRef = collection(db, "oses");
+  // const [docs, loading, error] = useCollectionData(collectionRef);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* <ul>
+        {docs?.map((doc) => (
+          <div key={Math.random()}>
+            <li>{doc.name}</li>
+
+            <ChildrenList path={`oses/${doc.name}/children`} />
+          </div>
+        ))}
+
+        <AddNew path="oses" />
+      </ul> */}
+      <ItemsContextProvider>
+        <CartContextProvider>
+          <CartProvider>
+            <BrowserRouter>
+              <Header />
+              <Routes>
+                <Route path="*" element={<NotFoundPage />} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/:id" element={<ProductPage />} />
+                <Route path="/cart" element={<CartPage />} />
+              </Routes>
+            </BrowserRouter>
+          </CartProvider>
+        </CartContextProvider>
+      </ItemsContextProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
