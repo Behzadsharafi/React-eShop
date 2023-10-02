@@ -1,0 +1,62 @@
+@use "../../partials/palette.scss";
+
+.cart {
+  padding: 15px 0px;
+  display: flex;
+  width: 100%;
+  gap: 30px;
+
+  &__items {
+    width: 70%;
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 30%;
+
+    &__title {
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    &__total {
+      font-weight: bold;
+      align-self: flex-end;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    &__gst {
+      align-self: flex-end;
+      font-size: 0.9rem;
+    }
+
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      &__button {
+        cursor: pointer;
+        background-color: palette.$color5;
+        border: none;
+        color: white;
+        padding: 3px;
+        border-radius: 5px;
+        align-self: center;
+        width: 100%;
+        text-decoration: none;
+        text-align: center;
+
+        &:hover {
+          background-color: palette.$color5-light;
+        }
+        &:active {
+          transform: scale(0.99);
+        }
+      }
+    }
+  }
+}

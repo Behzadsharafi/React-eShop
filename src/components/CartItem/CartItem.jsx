@@ -1,21 +1,28 @@
-import classes from "./CartItem.module.scss";
+import styles from "./CartItem.module.scss";
 
-const CartItem = (props) => {
-  const price = `$${props.price.toFixed(2)}`;
-
+const CartItem = ({ price, name, amount, image, onRemove, onAdd }) => {
   return (
-    <li className={classes["cart-item"]}>
-      <div>
-        <h2>{props.name}</h2>
-        <div className={classes.summary}>
-          <span className={classes.price}>{price}</span>
-          <span className={classes.amount}>x {props.amount}</span>
+    <li className={styles.item}>
+      <div className={styles.item__details}>
+        <h2 className={styles.item__details__title}>{name}</h2>
+        <div className={styles.item__details__summary}>
+          <span className={styles.item__details__summary__price}>
+            ${price.toFixed(2)}
+          </span>
+          <span className={styles.item__details__summary__amount}>
+            x {amount}
+          </span>
+        </div>
+        <div className={styles.item__actions}>
+          <button className={styles.item__actions__action} onClick={onRemove}>
+            −
+          </button>
+          <button className={styles.item__actions__action} onClick={onAdd}>
+            +
+          </button>
         </div>
       </div>
-      <div className={classes.actions}>
-        <button onClick={props.onRemove}>−</button>
-        <button onClick={props.onAdd}>+</button>
-      </div>
+      <img className={styles.item__image} src={image} alt="" />
     </li>
   );
 };

@@ -1,0 +1,40 @@
+@use "../../partials/palette.scss";
+
+.main {
+  display: flex;
+  padding: 15px 30px;
+  gap: 30px;
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    &__title {
+      font-size: 1.5rem;
+      text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    &__button {
+      cursor: pointer;
+      background-color: palette.$color5;
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      width: 50%;
+
+      &:hover {
+        background-color: palette.$color5-light;
+      }
+      &:active {
+        transform: scale(0.99);
+      }
+    }
+
+    &__return {
+      font-size: 0.8rem;
+      text-align: justify;
+    }
+  }
+}

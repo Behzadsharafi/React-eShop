@@ -1,18 +1,26 @@
+@use "../../partials/palette.scss";
+
 .card {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  justify-content: space-between;
+  gap: 6px;
   width: 15%;
   text-decoration: none;
   color: black;
-  padding: 10px;
+  padding: 5px;
   transition: box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    // box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.3);
+  }
 
   &__link {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: black;
+    gap: 6px;
 
     &:hover {
       text-decoration: underline;
@@ -20,12 +28,8 @@
   }
 
   &__img {
-    height: 70%;
   }
-  &__brand {
-    font-size: 1em;
-    font-weight: 600;
-  }
+
   &__title {
     font-size: 0.9em;
     font-weight: 500;
@@ -35,7 +39,19 @@
     font-weight: 600;
   }
 
-  &__form {
-    background-color: red;
+  &__button {
+    cursor: pointer;
+    background-color: palette.$color5;
+    border: none;
+    color: white;
+    padding: 3px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: palette.$color5-light;
+    }
+    &:active {
+      transform: scale(0.99);
+    }
   }
 }

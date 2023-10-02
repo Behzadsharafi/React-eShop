@@ -23,7 +23,7 @@ const ItemsGrid = () => {
         <ItemCard
           key={item.id}
           name={item.name}
-          img={item.imageLink}
+          image={item.imageLink}
           price={item.price}
           favourite={item.favourite}
           id={item.id}

@@ -2,48 +2,58 @@ import { useContext } from "react";
 import styles from "./Cart.module.scss";
 import CartItem from "./../CartItem/CartItem";
 import CartContext from "./../../context/Cart-Context";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const cartCtx = useContext(CartContext);
+  const { totalAmount, items, removeItem, addItem } = useContext(CartContext);
 
-  const totalAmount = cartCtx.totalAmount.toFixed(2);
-  const hasItems = cartCtx.items.length > 0;
+  const hasItems = items.length > 0;
 
   const cartItemRemoveHandler = (id) => {
-    cartCtx.removeItem(id);
+    removeItem(id);
   };
   const cartItemAddHandler = (item) => {
-    cartCtx.addItem({ ...item, amount: 1 });
+    addItem({ ...item, amount: 1 });
   };
 
   const cartItems = (
-    <ul>
-      {cartCtx.items.map((item) => (
+    <ul className={styles.cart__items}>
+      {items.map((item) => (
         <CartItem
           key={item.id}
           name={item.name}
           price={item.price}
-          onRemove={cartItemRemoveHandler.bind(null, item.id)}
-          onAdd={cartItemAddHandler.bind(null, item)}
+          onRemove={() => cartItemRemoveHandler(item.id)}
+          onAdd={() => cartItemAddHandler(item)}
           amount={item.amount}
+          image={item.image}
         />
       ))}
     </ul>
   );
 
   return (
-    <div>
+    <main className={styles.cart}>
       {cartItems}
-
-      <div>
-        <span>Total Amount: </span>
-        <span>${totalAmount} </span>
-      </div>
-      <div>
-        <button>Close</button>
-        {hasItems && <button>Order</button>}
-      </div>
-    </div>
+      <section className={styles.cart__summary}>
+        <p className={styles.cart__summary__title}>Order Summary</p>
+        <div className={styles.cart__summary__total}>
+          {/* <span>Total Amount: </span> */}
+          <span>AU${totalAmount.toFixed(2)} </span>
+        </div>
+        <p className={styles.cart__summary__gst}>Incl GST</p>
+        <div className={styles.cart__summary__buttons}>
+          <Link to="/" className={styles.cart__summary__buttons__button}>
+            Continue Shopping
+          </Link>
+          {hasItems && (
+            <button className={styles.cart__summary__buttons__button}>
+              Checkout Now
+            </button>
+          )}
+        </div>
+      </section>
+    </main>
   );
 };
 
