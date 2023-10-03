@@ -5,10 +5,19 @@
   padding: 15px 30px;
   gap: 30px;
 
+  height: 100%;
+
+  &__img {
+    height: 35%;
+    width: 35%;
+  }
+
   &__details {
     display: flex;
     flex-direction: column;
     gap: 1em;
+
+    // min-width: 600px;
 
     &__title {
       font-size: 1.5rem;

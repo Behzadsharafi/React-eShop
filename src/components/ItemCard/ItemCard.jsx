@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./ItemCard.module.scss";
 import { useContext } from "react";
-import CartContext from "./../../context/Cart-Context";
+import { CartContext } from "./../../context/Cart-Context";
 
 export const ItemCard = ({ name, image, price, favourite, id }) => {
   const { addItem } = useContext(CartContext);

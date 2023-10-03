@@ -3,7 +3,7 @@ import ShoppingBag from "../../assets/ShoppingBag.svg";
 import Heart from "../../assets/Heart.svg";
 import { Link } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import CartContext from "../../context/Cart-Context";
+import { CartContext } from "../../context/Cart-Context";
 
 export const Header = () => {
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);

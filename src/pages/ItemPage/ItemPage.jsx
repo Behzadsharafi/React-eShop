@@ -2,13 +2,29 @@ import { useParams } from "react-router-dom";
 import styles from "./ItemPage.module.scss";
 import { useContext, useEffect, useState } from "react";
 import { getItemById, getVariants } from "../../services/fashion-service";
-import CartContext from "../../context/Cart-Context";
+import { CartContext } from "../../context/Cart-Context";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { db } from "../../config/firestore";
 
 const ItemPage = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [variants, setVariants] = useState(null);
   const { addItem } = useContext(CartContext);
+  const [selectedVariant, setSelectedVariant] = useState("hello");
 
   const addToCartHandler = () => {
     addItem({
@@ -28,6 +44,91 @@ const ItemPage = () => {
       .then((variants) => setVariants(variants))
       .catch((error) => console.log(error));
   }, [id]);
+
+  const selectVariant = (variant) => {
+    setSelectedVariant(variant);
+  };
+
+  const decrease = async () => {
+    //Adding Something
+    // const colRef = collection(db, "fashion");
+    // addDoc(colRef, { name: "lebas", price: 1000 });
+    //Updating a document
+    // const docRef = doc(db, "fashion/item11/variants", "blue");
+    // const querySnapshot = await getDoc(docRef);
+    // getDoc(docRef).then((doc) => {
+    //   oldValue = doc.data().quantity;
+    // });
+    // const updatedValue = querySnapshot.data().quantity - 1;
+    // console.log(updatedValue + 1);
+    // updateDoc(docRef, { quantity: updatedValue });
+    //Adding Something with Timestamp
+    // const colRef = collection(db, "fashion");
+    // addDoc(colRef, {
+    //   name: "lebas",
+    //   price: 1000,
+    //   createdAt: serverTimestamp(),
+    // });
+    // const docRef = doc(db, "fashion", "tsM7R9KmwQwZSr1UbKwy");
+    // deleteDoc(docRef);
+    // getDocs(colRef)
+    //   .then((snapshot) => {
+    // let items = [];
+    // snapshot.docs.forEach((doc) => {
+    //   items.push({ ...doc.data(), id: doc.id });
+    // });
+    // console.log(items);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.message);
+    //   });
+  };
+
+  //Live Update
+  // onSnapshot(colRef, (snapshot) => {
+  //   let items = [];
+  //   snapshot.docs.forEach((doc) => {
+  //     items.push({ ...doc.data(), id: doc.id });
+  //   });
+  //   console.log(items);
+  // });
+
+  //Live Update with query
+  // const colRef = collection(db, "fashion");
+  // const q = query(colRef, where("name", "==", "lebas"));
+  // onSnapshot(q, (snapshot) => {
+  //   let items = [];
+  //   snapshot.docs.forEach((doc) => {
+  //     items.push({ ...doc.data(), id: doc.id });
+  //   });
+  //   console.log(items);
+  // });
+
+  //  Live Update with query and order
+  // const colRef = collection(db, "fashion");
+  // const q = query(
+  //   colRef,
+  //   where("favourite", "==", false),
+  //   orderBy("price", "desc")
+  // );
+  // onSnapshot(q, (snapshot) => {
+  //   let items = [];
+  //   snapshot.docs.forEach((doc) => {
+  //     items.push({ ...doc.data(), id: doc.id });
+  //   });
+  //   console.log(items);
+  // });
+
+  //getting a single document
+  // const docRef = doc(db, "fashion", "item11");
+  // getDoc(docRef).then((doc) => {
+  //   console.log(doc.data(), doc.id);
+  // });
+
+  //subscribing to a single document
+  // onSnapshot(docRef, (doc) => {
+  //   console.log(doc.data(), doc.id);
+  // });
 
   return (
     <>
@@ -50,12 +151,15 @@ const ItemPage = () => {
               (39”) chest and a 81.3cm (32”) waist. - Pure cotton jersey; ribbed
               stretch - Embroidered pony logo
             </p>
-            {variants &&
+            {/* {variants &&
               variants.map((variant) => (
-                <h1 key={variant.color + variant.name}>
+                <h1
+                  onClick={() => selectVariant(variant)}
+                  key={variant.color + variant.name}
+                >
                   {variant.color} {variant.quantity}
                 </h1>
-              ))}
+              ))} */}
 
             <button
               onClick={addToCartHandler}
@@ -63,6 +167,7 @@ const ItemPage = () => {
             >
               ADD TO BAG
             </button>
+            {/* <button onClick={decrease}>Decrease variant</button> */}
 
             <p className={styles.main__details__return}>
               <strong>
