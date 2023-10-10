@@ -1,9 +1,51 @@
-.grid {
-  padding: 15px 0px;
+@use "../../partials/mixins.scss";
+
+.main {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
+  flex-grow: 1;
+  width: 90%;
+  justify-content: center;
+
+  &__empty {
+    padding-top: 20px;
+    @include mixins.phone_sm {
+      font-size: 1rem;
+    }
+  }
+
+  &__grid {
+    padding: 15px 0px;
+    display: grid;
+    grid-template-columns: repeat(4, 250px);
+    grid-auto-rows: minmax(300px, auto);
+    justify-content: space-between;
+    row-gap: 60px;
+    width: 100%;
+    height: 100%;
+
+    @include mixins.desktop_lg {
+      grid-template-columns: repeat(4, 200px);
+    }
+
+    @include mixins.desktop_md {
+      grid-template-columns: repeat(3, 250px);
+    }
+
+    @include mixins.desktop_sm {
+      grid-template-columns: repeat(3, 200px);
+    }
+
+    @include mixins.tablet {
+      grid-template-columns: repeat(2, 250px);
+    }
+
+    @include mixins.phone {
+      grid-template-columns: repeat(1, 300px);
+      justify-content: center;
+    }
+    @include mixins.phone_sm {
+      grid-template-columns: repeat(1, 200px);
+      justify-content: center;
+    }
+  }
 }

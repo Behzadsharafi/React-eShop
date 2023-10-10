@@ -8,6 +8,7 @@ const CartItem = ({
   image,
   onRemove,
   onAdd,
+  onDelete,
   size,
   id,
 }) => {
@@ -37,6 +38,9 @@ const CartItem = ({
         <div className={styles.item__size}>
           <strong> Size:</strong> {size}
         </div>
+        <button className={styles.item__delete} onClick={onDelete}>
+          Delete Item
+        </button>
       </div>
       <img
         onClick={() => navigate(`/${id}`)}

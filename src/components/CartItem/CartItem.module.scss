@@ -7,8 +7,15 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid palette.$color4;
-  height: 20vh;
-  width: 100%;
+  padding: 10px 0px;
+  // height: 20vh;
+  // width: 100%;
+
+  @include mixins.phone_sm {
+    flex-direction: column-reverse;
+    gap: 10px;
+    padding: 3px 0px;
+  }
 
   &__details {
     display: flex;
@@ -30,12 +37,20 @@
       font-weight: bold;
       align-items: center;
 
+      @include mixins.phone {
+        gap: 0.5em;
+      }
+
       &__amount {
         font-weight: bold;
         border: 1px solid #ccc;
         padding: 0.25rem 0.75rem;
         border-radius: 6px;
         color: #363636;
+
+        @include mixins.phone {
+          padding: 0.25rem 0.25rem;
+        }
       }
     }
   }
@@ -43,6 +58,10 @@
   &__actions {
     display: flex;
     gap: 0.3rem;
+
+    @include mixins.phone {
+      gap: 0.1rem;
+    }
   }
 
   &__size {
@@ -50,8 +69,16 @@
     font-weight: 500;
   }
 
+  &__delete {
+    width: 250px;
+
+    @include mixins.tablet {
+      width: 150px;
+    }
+  }
+
   &__image {
-    height: 90%;
+    height: 20vh;
     box-shadow: 2px 3px 11px 0px rgba(0, 0, 0, 0.2);
     cursor: pointer;
   }

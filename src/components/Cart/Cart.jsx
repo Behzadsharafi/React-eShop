@@ -7,7 +7,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firestore";
 
 const Cart = () => {
-  const { totalAmount, items, removeItem, addItem, order } =
+  const { totalAmount, items, removeItem, addItem, deleteItem, order } =
     useContext(CartContext);
 
   const hasItems = items.length > 0;
@@ -15,9 +15,15 @@ const Cart = () => {
   const cartItemRemoveHandler = (id) => {
     removeItem(id);
   };
+
+  const cartItemDeleteHandler = (id) => {
+    deleteItem(id);
+  };
+
   const cartItemAddHandler = (item) => {
     addItem({ ...item, amount: 1 });
   };
+
   const navigate = useNavigate();
 
   const orderHandler = async () => {
@@ -32,7 +38,10 @@ const Cart = () => {
   };
 
   const cartItems = (
-    <ul className={styles.cart__items}>
+    <ul
+      style={{ display: items.length === 0 ? "none" : "" }}
+      className={styles.cart__items}
+    >
       {items.map((item) => (
         <CartItem
           key={item.id}
@@ -40,6 +49,7 @@ const Cart = () => {
           price={item.price}
           onRemove={() => cartItemRemoveHandler(item.id)}
           onAdd={() => cartItemAddHandler(item)}
+          onDelete={() => cartItemDeleteHandler(item.id)}
           amount={item.amount}
           image={item.image}
           size={item.size}
@@ -51,23 +61,38 @@ const Cart = () => {
 
   return (
     <main className={styles.cart}>
-      {cartItems}
-      <section className={styles.cart__summary}>
-        <div className={styles.cart__summary__details}>
-          <p className={styles.cart__summary__details__title}>Order Summary</p>
-          <div className={styles.cart__summary__details__total}>
-            {/* <span>Total Amount: </span> */}
-            <span>AU${totalAmount.toFixed(2)} </span>
-          </div>
-          <p className={styles.cart__summary__details__gst}>Incl GST</p>
+      {items.length === 0 && (
+        <div className={styles.cart__empty}>
+          {" "}
+          <h2>Your Bag Is Empty!</h2>{" "}
         </div>
+      )}
+      {cartItems}
+      <section
+        style={{ display: items.length === 0 ? "none" : "" }}
+        className={styles.cart__summary}
+      >
+        {items.length !== 0 && (
+          <div className={styles.cart__summary__details}>
+            <p className={styles.cart__summary__details__title}>
+              Order Summary
+            </p>
+            <div className={styles.cart__summary__details__total}>
+              {/* <span>Total Amount: </span> */}
+              <span>AU${totalAmount.toFixed(2)} </span>
+            </div>
+            <p className={styles.cart__summary__details__gst}>Incl GST</p>
+          </div>
+        )}
         <div className={styles.cart__summary__buttons}>
-          <button
-            onClick={() => navigate(`/`)}
-            className={styles.cart__summary__buttons__button}
-          >
-            Continue Shopping
-          </button>
+          {hasItems && (
+            <button
+              onClick={() => navigate(`/`)}
+              className={styles.cart__summary__buttons__button}
+            >
+              Continue Shopping
+            </button>
+          )}
           {hasItems && (
             <button
               onClick={orderHandler}
