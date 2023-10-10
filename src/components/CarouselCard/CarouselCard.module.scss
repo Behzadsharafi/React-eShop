@@ -1,0 +1,143 @@
+@use "../../partials/mixins.scss";
+@use "../../partials/palette.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inclusive+Sans:ital@1&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mooli&family=Poppins&family=Roboto:wght@100;400&family=Skranji:wght@400;700&display=swap");
+
+.carouselCard {
+  width: 100vw;
+  display: flex;
+  overflow-y: hidden;
+  text-decoration: none;
+  color: black;
+  // justify-content: center;
+
+  &__content {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    // padding: 0px 200px;
+    // justify-content: space-between;
+    transform: translateX(-350px);
+
+    @include mixins.desktop_xl {
+      transform: translateX(-100px);
+    }
+    @include mixins.desktop_lg {
+      transform: translateX(-50px);
+    }
+    @include mixins.desktop_md {
+      transform: translateX(-35px);
+    }
+    @include mixins.tablet {
+      transform: translateX(-15px);
+    }
+
+    @include mixins.phone {
+      flex-direction: column-reverse;
+      align-items: center;
+      position: relative;
+      transform: translateX(-15px);
+    }
+
+    justify-content: center;
+    // text-shadow: 4px 1px 5px rgba(0, 0, 0, 0.37);
+    &__image {
+      height: 99%;
+
+      // object-fit: contain;
+      box-shadow: 2px 3px 11px 0px rgba(0, 0, 0, 0.3);
+
+      @include mixins.tablet {
+        height: 80%;
+      }
+      @include mixins.phone_sm {
+        // width: 100vw;
+        // object-position: center top;
+        // object-fit: cover;
+      }
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // gap: 50px;
+    width: 45%;
+
+    @include mixins.desktop_md {
+      gap: 0px;
+    }
+
+    &__top {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      @include mixins.desktop_md {
+        font-size: 0.7rem;
+      }
+      @include mixins.desktop_sm {
+        font-size: 0.6rem;
+      }
+      @include mixins.phone {
+        display: none;
+      }
+
+      &__title {
+        font-family: "Dela Gothic One", cursive;
+        font-size: 2rem;
+
+        @include mixins.desktop_md {
+          font-size: 1.5rem;
+        }
+        @include mixins.desktop_sm {
+          font-size: 1.3rem;
+        }
+
+        @include mixins.phone {
+          display: none;
+        }
+      }
+    }
+
+    &__bottom {
+      padding: 0.5em;
+      background-color: black;
+      color: white;
+      border-radius: 30px;
+      transition: transform 0.3s ease-in-out;
+      @include mixins.desktop_md {
+        font-size: 1.4rem;
+      }
+      @include mixins.desktop_sm {
+        font-size: 1.1rem;
+      }
+
+      @include mixins.phone {
+        position: absolute;
+        bottom: 40px;
+        // left: 35%;
+        font-size: 0.8rem;
+        background-color: rgba(0, 0, 0, 0.342);
+      }
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      &__sale {
+        display: none;
+
+        @include mixins.phone {
+          display: flex;
+          position: absolute;
+          bottom: 80px;
+          font-size: 1.2rem;
+          color: white;
+          text-shadow: 4px 1px 5px rgba(0, 0, 0, 0.37);
+        }
+      }
+    }
+  }
+}
