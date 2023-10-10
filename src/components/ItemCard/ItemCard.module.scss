@@ -5,11 +5,27 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 6px;
-  width: 15%;
+  // width: 15%;
   text-decoration: none;
   color: black;
   padding: 5px;
   transition: box-shadow 0.3s ease-in-out;
+  position: relative;
+  height: 100%;
+
+  &__heart {
+    cursor: pointer;
+    position: absolute;
+    height: 20px;
+    left: 10px;
+    top: 10px;
+    z-index: 5;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 
   &:hover {
     // box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.3);
@@ -28,6 +44,9 @@
   }
 
   &__img {
+    // height: 100%;
+    width: 100%;
+    box-shadow: 2px 3px 8px 0px rgba(0, 0, 0, 0.3);
   }
 
   &__title {
@@ -37,6 +56,21 @@
   &__price {
     font-size: 1em;
     font-weight: 600;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+  }
+
+  &__select {
+    border-radius: 5px;
+    outline: none;
+
+    &__error {
+      background-color: red;
+    }
   }
 
   &__button {

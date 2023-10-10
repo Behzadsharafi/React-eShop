@@ -27,6 +27,7 @@ const ItemsGrid = () => {
           price={item.price}
           favourite={item.favourite}
           id={item.id}
+          items={items}
         />
       ))}
     </div>

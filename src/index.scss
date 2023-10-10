@@ -358,3 +358,15 @@ template {
 [hidden] {
   display: none;
 }
+
+body {
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}

@@ -1,8 +1,13 @@
+import Carousel from "../../components/Carousel/Carousel";
 import ItemsGrid from "../../components/ItemsGrid/ItemsGrid";
-import styles from "./HomePage.module.scss";
 
 const HomePage = () => {
-  return <ItemsGrid />;
+  return (
+    <>
+      <Carousel />
+      <ItemsGrid />
+    </>
+  );
 };
 
 export default HomePage;
