@@ -27,7 +27,6 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const orderHandler = async () => {
-    // console.log(items[0]);
     for (let i = 0; i < items.length; i++) {
       const docRef = doc(db, `fashion/${items[i].id}/variants`, items[i].size);
       const querySnapshot = await getDoc(docRef);
