@@ -50,19 +50,6 @@ export const ItemCard = ({ name, image, price, id, items }) => {
     setError(false);
   }, [size]);
 
-  // const handleSizeSelect = (event) => {
-  //   setSize(event.target.value);
-  // };
-
-  //do not include
-  // const handleLike = (id) => {
-  //   // if (favouriteItems.includes(id)) {
-  //   //   setFavouriteItems(favouriteItems.filter((sitem) => item !== id));
-  //   // } else {
-  //   setFavouriteItems([...favouriteItems, id]);
-  //   // }
-  // };
-
   const handleSizeSelect = (event) => {
     setSize(event.target.value);
   };
