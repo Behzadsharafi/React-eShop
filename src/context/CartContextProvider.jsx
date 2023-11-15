@@ -1,13 +1,6 @@
 import { createContext, useState, useEffect, useReducer } from "react";
 
 export const CartContext = createContext(null);
-// export const CartContext = createContext({
-//   items: [],
-//   totalAmount: 0,
-//   addItem: (item) => {},
-//   removeItem: (id) => {},
-//   order: () => {},
-// });
 
 const defaultCartState = {
   items: [],
@@ -62,6 +55,23 @@ const cartReducer = (state, action) => {
     };
   }
 
+  if (action.type === "DELETE") {
+    const existingCartItemIndex = state.items.findIndex(
+      (item) => item.id === action.id
+    );
+    const existingItem = state.items[existingCartItemIndex];
+    const updatedTotalAmount =
+      state.totalAmount - existingItem.price * existingItem.amount;
+    let updatedItems;
+
+    updatedItems = state.items.filter((item) => item.id !== action.id);
+
+    return {
+      items: updatedItems,
+      totalAmount: updatedTotalAmount,
+    };
+  }
+
   if (action.type === "ORDER") {
     return {
       items: [],
@@ -80,8 +90,13 @@ const CartContextProvider = ({ children }) => {
   const addItemToCartHandler = (item) => {
     dispatchCartAction({ type: "ADD", item: item });
   };
+
   const removeItemFromCartHandler = (id) => {
     dispatchCartAction({ type: "REMOVE", id: id });
+  };
+
+  const deleteItemHandler = (id) => {
+    dispatchCartAction({ type: "DELETE", id: id });
   };
 
   const orderHandler = () => {
@@ -93,6 +108,7 @@ const CartContextProvider = ({ children }) => {
     totalAmount: cartState.totalAmount,
     addItem: addItemToCartHandler,
     removeItem: removeItemFromCartHandler,
+    deleteItem: deleteItemHandler,
     order: orderHandler,
   };
 
@@ -102,5 +118,3 @@ const CartContextProvider = ({ children }) => {
 };
 
 export default CartContextProvider;
-
-// export default CartContext;

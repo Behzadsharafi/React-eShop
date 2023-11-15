@@ -47,6 +47,7 @@ const ItemPage = () => {
       image: item.imageLink,
       amount: 1,
       price: item.price,
+      size: size,
     });
   };
 
@@ -54,9 +55,6 @@ const ItemPage = () => {
     getItemById(id)
       .then((item) => setItem(item))
       .catch((error) => console.log(error));
-    // getVariants(id)
-    //   .then((variants) => setVariants(variants))
-    //   .catch((error) => console.log(error));
   }, [id]);
 
   useEffect(() => {
@@ -70,10 +68,6 @@ const ItemPage = () => {
   const selectStyle = error
     ? `${styles.container__main__details__buttons__select} ${styles.container__main__details__buttons__select__error}`
     : styles.container__main__details__buttons__select;
-
-  // const selectVariant = (variant) => {
-  //   setSelectedVariant(variant);
-  // };
 
   return (
     <>

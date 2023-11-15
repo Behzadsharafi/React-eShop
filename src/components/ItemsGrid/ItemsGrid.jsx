@@ -5,18 +5,8 @@ import { ItemCard } from "../ItemCard/ItemCard";
 import { ItemsContext } from "../../context/ItemsContextProvider";
 
 const ItemsGrid = () => {
-  // const [items, setItems] = useState([]);
   const { items } = useContext(ItemsContext);
 
-  // const refreshItems = () => {
-  //   getAllItems()
-  //     .then((items) => setItems(items))
-  //     .catch((e) => console.log(e));
-  // };
-
-  // useEffect(() => {
-  //   refreshItems();
-  // }, []);
   return (
     <div className={styles.grid}>
       {items?.map((item) => (

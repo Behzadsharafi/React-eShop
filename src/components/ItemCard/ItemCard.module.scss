@@ -88,4 +88,12 @@
       transform: scale(0.99);
     }
   }
+
+  &__outOfStock {
+    background-color: palette.$color5-lighter;
+    border: none;
+    color: white;
+    padding: 3px;
+    border-radius: 5px;
+  }
 }

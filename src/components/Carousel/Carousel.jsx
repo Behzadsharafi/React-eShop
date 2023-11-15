@@ -20,31 +20,18 @@ const Carousel = () => {
     resetInterval();
   };
 
-  //thi should not be in the code
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     nextSlide(); // Call nextSlide to update the slide
-  //   }, 5000); // Change slide every 1 second (1000ms)
-
-  //   return () => {
-  //     clearInterval(intervalId); // Cleanup the interval when the component unmounts
-  //   };
-  // }, []);
-
-  ///Thi should be in the code
   const resetInterval = () => {
-    clearInterval(intervalRef.current); // Clear the current interval
-    intervalRef.current = setInterval(nextSlide, 5000); // Reset the interval
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(nextSlide, 5000);
   };
 
   useEffect(() => {
-    resetInterval(); // Initialize the interval
+    resetInterval();
 
     return () => {
-      clearInterval(intervalRef.current); // Cleanup the interval when the component unmounts
+      clearInterval(intervalRef.current);
     };
   }, []);
-  //till here
 
   const [featuredItems, setFeaturedItems] = useState([]);
   useEffect(() => {

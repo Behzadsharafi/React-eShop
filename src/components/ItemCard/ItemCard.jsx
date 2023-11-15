@@ -5,12 +5,14 @@ import { CartContext } from "../../context/CartContextProvider";
 import Heart from "../../assets/Heart.svg";
 import HeartFilled from "../../assets/HeartFilled.svg";
 import { FavouriteContext } from "./../../context/FavouriteContextProvider";
+import { getVariantById } from "../../services/fashion-service";
 
 export const ItemCard = ({ name, image, price, id, items }) => {
   const { addItem } = useContext(CartContext);
   const { addFavourite, faveItems } = useContext(FavouriteContext);
   const [error, setError] = useState(false);
   const [size, setSize] = useState(null);
+  const [outOfStock, setOutOfStock] = useState(false);
 
   const addToFavouriteHandler = () => {
     addFavourite({
@@ -36,6 +38,10 @@ export const ItemCard = ({ name, image, price, id, items }) => {
       return;
     }
 
+    if (outOfStock) {
+      return;
+    }
+
     addItem({
       id: id,
       name: name,
@@ -47,21 +53,17 @@ export const ItemCard = ({ name, image, price, id, items }) => {
   };
 
   useEffect(() => {
+    setOutOfStock(false);
+    if (size) {
+      getVariantById(id, size).then((item) => {
+        if (item.qty === 0) {
+          setOutOfStock(true);
+        }
+      });
+    }
+
     setError(false);
   }, [size]);
-
-  // const handleSizeSelect = (event) => {
-  //   setSize(event.target.value);
-  // };
-
-  //do not include
-  // const handleLike = (id) => {
-  //   // if (favouriteItems.includes(id)) {
-  //   //   setFavouriteItems(favouriteItems.filter((sitem) => item !== id));
-  //   // } else {
-  //   setFavouriteItems([...favouriteItems, id]);
-  //   // }
-  // };
 
   const handleSizeSelect = (event) => {
     setSize(event.target.value);
@@ -97,9 +99,14 @@ export const ItemCard = ({ name, image, price, id, items }) => {
           <option value="medium">Medium</option>
           <option value="large">Large</option>
         </select>
-        <button className={styles.card__button} onClick={addToCartHandler}>
-          Add To Bag
-        </button>
+        {outOfStock && (
+          <button className={styles.card__outOfStock}>Out Of Stock</button>
+        )}
+        {!outOfStock && (
+          <button className={styles.card__button} onClick={addToCartHandler}>
+            Add To Bag
+          </button>
+        )}
       </div>
     </div>
   );

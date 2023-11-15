@@ -2,18 +2,30 @@
 @use "../../partials/mixins.scss";
 
 .cart {
-  padding: 15px 0px;
+  // padding: 15px 0px;
+  // padding-right: 40px;
   display: flex;
   width: 90%;
   gap: 30px;
   flex-grow: 1;
   justify-content: space-between;
-  padding-right: 40px;
+  padding: 15px 40px 15px 0px;
+
+  &__empty {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    transform: translateX(25px);
+  }
 
   @include mixins.desktop_sm {
     flex-direction: column;
     width: 80%;
     align-items: center;
+  }
+
+  @include mixins.phone_sm {
+    padding: 0px 40px 15px 0px;
   }
 
   &__items {
@@ -34,6 +46,7 @@
       flex-direction: row;
       width: 500px;
       justify-content: space-between;
+      flex-grow: 1;
     }
 
     @include mixins.tablet {
