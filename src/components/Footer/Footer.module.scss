@@ -1,0 +1,86 @@
+@use "../../partials/palette";
+@use "../../partials/mixins.scss";
+
+.footer {
+  border-top: 2px solid palette.$color3-light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  padding: 1rem;
+
+  &__content {
+    height: 100%;
+    display: flex;
+    width: 90%;
+    max-width: 900px;
+    justify-content: space-between;
+    align-items: center;
+    // gap: 150px;
+    @include mixins.tablet {
+      flex-direction: column;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    @include mixins.phone {
+    }
+
+    &__left {
+      display: flex;
+      gap: 30px;
+
+      @include mixins.tablet {
+        display: flex;
+        // gap: 30px;
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      @include mixins.phone {
+        display: flex;
+        flex-direction: column;
+      }
+
+      &__col {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        & p {
+          font-size: 0.7rem;
+          color: grey;
+          cursor: pointer;
+        }
+
+        & div {
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+        }
+      }
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+
+      &__row {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+
+        & div {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 7px;
+          & img {
+            height: 15px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

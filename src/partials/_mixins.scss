@@ -1,0 +1,66 @@
+@use "breakpoints.scss";
+
+//428px and smaller
+@mixin phone_sm {
+  @media only screen and (max-width: breakpoints.$xs) {
+    @content;
+  }
+}
+
+//576px and smaller
+@mixin phone {
+  @media only screen and (max-width: breakpoints.$sm) {
+    @content;
+  }
+}
+
+//768px and smaller
+@mixin tablet {
+  @media only screen and (max-width: breakpoints.$md) {
+    @content;
+  }
+}
+
+//992px and smaller
+@mixin desktop_sm {
+  @media only screen and (max-width: breakpoints.$lg) {
+    @content;
+  }
+}
+
+//1200px and smaller
+@mixin desktop_md {
+  @media only screen and (max-width: breakpoints.$xl) {
+    @content;
+  }
+}
+
+//1400px and smaller
+@mixin desktop_lg {
+  @media only screen and (max-width: breakpoints.$xxl) {
+    @content;
+  }
+}
+
+//1700px and smaller
+@mixin desktop_xl {
+  @media only screen and (max-width: breakpoints.$xxxl) {
+    @content;
+  }
+}
+
+//1700px and larger
+@mixin desktop_xxl {
+  @media only screen and (min-width: (breakpoints.$xxxl + 1px)) {
+    //  placeholder for actual values
+    @content;
+  }
+}
+
+// $xs: 428px;
+// $sm: 576px;
+// $md: 768px;
+// $lg: 992px;
+// $xl: 1200px;
+// $xxl: 1400px;
+// $xxxl: 1700px;

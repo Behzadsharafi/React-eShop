@@ -1,0 +1,109 @@
+@use "../../partials/palette.scss";
+@use "../../partials/mixins.scss";
+
+.cart {
+  padding: 15px 0px;
+  display: flex;
+  width: 90%;
+  gap: 30px;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding-right: 40px;
+
+  @include mixins.desktop_sm {
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    // width: 70%;
+    width: 100%;
+    max-width: 840px;
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 30%;
+
+    @include mixins.desktop_sm {
+      flex-direction: row;
+      width: 500px;
+      justify-content: space-between;
+    }
+
+    @include mixins.tablet {
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      padding-left: 40px;
+    }
+
+    &__details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      &__title {
+        font-weight: bold;
+        font-size: 1.3rem;
+      }
+
+      &__total {
+        font-weight: bold;
+        align-self: flex-end;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+
+        @include mixins.desktop_sm {
+          width: 100%;
+          align-self: flex-start;
+        }
+      }
+
+      &__gst {
+        align-self: flex-end;
+        font-size: 0.9rem;
+
+        @include mixins.desktop_sm {
+          width: 100%;
+          align-self: flex-start;
+        }
+      }
+    }
+
+    &__buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 40px;
+
+      @include mixins.desktop_sm {
+      }
+
+      &__button {
+        cursor: pointer;
+        background-color: palette.$color5;
+        border: none;
+        color: white;
+        padding: 3px;
+        border-radius: 5px;
+        align-self: center;
+        width: 100%;
+        text-decoration: none;
+        text-align: center;
+
+        &:hover {
+          background-color: palette.$color5-light;
+        }
+        &:active {
+          transform: scale(0.99);
+        }
+      }
+    }
+  }
+}
