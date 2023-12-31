@@ -1,7 +1,5 @@
 <div align='center'>
 
-<img src="/src/assets/banner.png" alt="logo" width=50% height=auto />
-
 <h1> 👔 React E-Shop 👗</h1>
 <p>A clothing e-shop full stack website developed in React.JS, SCSS, with Google Firestore realtime integration.  </p>
 
