@@ -1,4 +1,4 @@
-name: unitTests.yml
+name: Test
 
 on:
   pull_request:

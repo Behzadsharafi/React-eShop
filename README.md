@@ -1,3 +1,6 @@
+[![Tests Passing](https://github.com/Behzadsharafi/React-eShop/actions/workflows/test.yml/badge.svg)](https://github.com/Behzadsharafi/React-eShop/actions/workflows/test.yml)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Behzadsharafi/React-eShop/blob/main/LICENSE)
+
 <div align='center'>
 
 <h1> 👔 React E-Shop 👗</h1>
