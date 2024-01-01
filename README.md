@@ -1,4 +1,4 @@
-[![Tests Passing](https://github.com/Behzadsharafi/React-eShop/actions/workflows/test.yml/badge.svg)](https://github.com/Behzadsharafi/React-eShop/actions/workflows/test.yml)
+[![Tests Passing](https://github.com/Behzadsharafi/React-eShop/actions/workflows/Test.yml/badge.svg)](https://github.com/Behzadsharafi/React-eShop/actions/workflows/Test.yml)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Behzadsharafi/React-eShop/blob/main/LICENSE)
 
 <div align='center'>
