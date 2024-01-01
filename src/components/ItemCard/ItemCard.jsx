@@ -103,7 +103,11 @@ export const ItemCard = ({ name, image, price, id, items }) => {
           <button className={styles.card__outOfStock}>Out Of Stock</button>
         )}
         {!outOfStock && (
-          <button className={styles.card__button} onClick={addToCartHandler}>
+          <button
+            data-testid="AddToBag"
+            className={styles.card__button}
+            onClick={addToCartHandler}
+          >
             Add To Bag
           </button>
         )}
