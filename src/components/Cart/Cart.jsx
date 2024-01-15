@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styles from "./Cart.module.scss";
 import CartItem from "./../CartItem/CartItem";
 import { CartContext } from "../../context/CartContextProvider";
@@ -9,6 +9,8 @@ import { db } from "../../config/firestore";
 const Cart = () => {
   const { totalAmount, items, removeItem, addItem, deleteItem, order } =
     useContext(CartContext);
+
+  const [error, setError] = useState(null);
 
   const hasItems = items.length > 0;
 
@@ -27,11 +29,22 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const orderHandler = async () => {
+    setError(null);
     for (let i = 0; i < items.length; i++) {
       const docRef = doc(db, `fashion/${items[i].id}/variants`, items[i].size);
       const querySnapshot = await getDoc(docRef);
+
       const updatedValue = querySnapshot.data().qty - items[i].amount;
-      updateDoc(docRef, { qty: updatedValue });
+      if (updatedValue < 0) {
+        setError(
+          `Not enough stock for ${items[i].name}. Please order ${
+            querySnapshot.data().qty
+          } or less `
+        );
+        throw new Error("not enough stock");
+      } else {
+        updateDoc(docRef, { qty: updatedValue });
+      }
     }
     order();
   };
@@ -99,6 +112,9 @@ const Cart = () => {
             >
               Order Now
             </button>
+          )}
+          {error && (
+            <p className={styles.cart__summary__buttons__error}>{error}</p>
           )}
         </div>
       </section>
